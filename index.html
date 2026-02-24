@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apoorna Rajaguru · EEE Portfolio</title>
+    <style>
+      /* -------------------- DARK THEME -------------------- */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #0e1a2b; /* deep dark navy */
+        color: #e3ecfd; /* soft off-white */
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.5;
+        scroll-behavior: smooth;
+      }
+
+      /* dark color palette */
+      :root {
+        --bg-deep: #0b1423; /* dark background */
+        --card-bg: #1b2b40; /* card / surface */
+        --primary-accent: #5f9ef0; /* brighter blue */
+        --secondary-accent: #50b8b8; /* teal for highlights */
+        --text-light: #eef5ff;
+        --text-soft: #c9dbfc;
+        --border-subtle: #2d405b;
+        --shadow-dark: 0 25px 35px -15px #030711;
+      }
+
+      /* navigation */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.2rem 2.5rem;
+        background-color: #101d31; /* slightly lighter than body */
+        box-shadow: 0 6px 14px #030a14;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 1px solid #253b55;
+      }
+
+      .logo {
+        font-size: 1.9rem;
+        font-weight: 600;
+        color: var(--primary-accent);
+        letter-spacing: -0.5px;
+        text-shadow: 0 2px 5px #1e3550;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2.8rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text-soft);
+        font-weight: 500;
+        font-size: 1.1rem;
+        transition: 0.15s;
+        border-bottom: 2px solid transparent;
+        padding-bottom: 0.2rem;
+      }
+
+      .nav-links a:hover {
+        border-bottom-color: var(--secondary-accent);
+        color: white;
+      }
+
+      .menu-toggle {
+        display: none;
+        font-size: 2rem;
+        cursor: pointer;
+        color: var(--primary-accent);
+      }
+
+      /* ----- HOME / FIRST PAGE (name removed) ----- */
+      .home-template {
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle at 10% 30%, #1c3a5a, #0b1e32);
+        padding: 2rem;
+        border-bottom: 1px solid #2d4b70;
+      }
+
+      .template-card {
+        max-width: 1100px;
+        width: 100%;
+        background: rgba(20, 40, 60, 0.65);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 70px;
+        padding: 4rem 3.5rem;
+        box-shadow: 0 35px 60px -15px #030c1a;
+        border: 1px solid #3c6085;
+        display: block;
+        text-align: center;
+      }
+
+      .template-left {
+        color: white;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .template-left .greeting {
+        font-size: 2.2rem;
+        font-weight: 450;
+        color: #b3dcff;
+        margin-bottom: 1rem;
+        letter-spacing: 1px;
+        word-break: break-word;
+      }
+
+      /* name heading completely removed */
+      .template-left h1 {
+        display: none;
+      }
+
+      .template-left .subhead {
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: #c6defa;
+        margin-bottom: 2rem;
+      }
+
+      .template-left .description {
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        color: #d0e4ff;
+        margin-bottom: 0;
+        line-height: 1.6;
+      }
+
+      /* sections general */
+      section {
+        padding: 5rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        font-size: 2.8rem;
+        font-weight: 600;
+        color: var(--primary-accent);
+        text-align: center;
+        margin-bottom: 3rem;
+        position: relative;
+      }
+
+      .section-title:after {
+        content: "";
+        display: block;
+        width: 90px;
+        height: 4px;
+        background: var(--secondary-accent);
+        margin: 1rem auto 0;
+        border-radius: 3px;
+        box-shadow: 0 0 8px #37b8b8;
+      }
+
+      /* about – two column with photo */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 3rem;
+        align-items: center;
+        background: var(--card-bg);
+        border-radius: 48px;
+        padding: 2.8rem 3rem;
+        box-shadow: var(--shadow-dark);
+        border: 1px solid #2a3f5a;
+      }
+
+      .about-photo {
+        text-align: center;
+      }
+
+      .about-photo img {
+        width: 260px;
+        height: 260px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 4px solid #446688;
+        box-shadow: 0 20px 30px -8px #020a14;
+      }
+
+      .about-details h2 {
+        font-size: 2.2rem;
+        color: #cde1ff;
+        margin-bottom: 0.8rem;
+      }
+
+      .about-details .edu {
+        font-size: 1.3rem;
+        background: #1f3d5e;
+        display: inline-block;
+        padding: 0.3rem 1.8rem;
+        border-radius: 40px;
+        margin: 1rem 0 1.2rem;
+        font-weight: 500;
+        color: #bbd6ff;
+        border: 1px solid #3a628b;
+      }
+
+      .about-details p {
+        font-size: 1.2rem;
+        color: #c5d9fc;
+        margin-bottom: 1.5rem;
+      }
+
+      .about-details .tagline {
+        background: #1e2f45;
+        padding: 0.9rem 1.8rem;
+        border-radius: 50px;
+        border: 1px solid #3d6085;
+        display: inline-block;
+        font-weight: 500;
+        color: #d5e9ff;
+      }
+
+      /* ----- SKILLS with icons (each line has an icon) ----- */
+      .skills-lines {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        max-width: 700px;
+        margin: 0 auto;
+        background: #18273d;
+        padding: 2.5rem 3rem;
+        border-radius: 60px;
+        box-shadow: var(--shadow-dark);
+        border: 1px solid #2a405b;
+      }
+
+      .skill-line {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 1.4rem;
+        font-weight: 450;
+        color: #d1e6ff;
+        padding: 0.8rem 0.5rem;
+        border-bottom: 2px solid #2a4b70;
+        transition: 0.2s;
+        letter-spacing: 0.3px;
+      }
+
+      .skill-line:last-child {
+        border-bottom: none;
+      }
+
+      .skill-line:hover {
+        border-bottom-color: var(--secondary-accent);
+        color: white;
+        padding-left: 1rem;
+        border-bottom-width: 3px;
+      }
+
+      /* icon style */
+      .skill-icon {
+        width: 32px;
+        height: 32px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        filter: brightness(1.3) drop-shadow(0 2px 2px #0f1a2c);
+        flex-shrink: 0;
+      }
+
+      /* custom icons for each skill (simple electrical/electronics related) */
+      .icon-circuit {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%235f9ef0"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-.5-13v4h-4v2h4v4h2v-4h4v-2h-4V7h-2z"/></svg>');
+      }
+      .icon-pcb {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%235f9ef0"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM9 8h2v8H9zm4 0h2v8h-2z"/></svg>');
+      }
+      .icon-machines {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%235f9ef0"><path d="M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5s-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.79 2.59 5.01 4 8.19 4s6.4-1.41 8.19-4H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8zm-4 8h-8v-2h8v2zm0-4h-8v-2h8v2z"/></svg>');
+      }
+      .icon-power {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%235f9ef0"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>');
+      }
+      .icon-analysis {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%235f9ef0"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>');
+      }
+      .icon-analog {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%235f9ef0"><path d="M4 9h4v11H4zm12 4h4v7h-4zm-6-9h4v16h-4z"/></svg>');
+      }
+      .icon-digital {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%235f9ef0"><path d="M20 3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H4V5h16v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg>');
+      }
+
+      /* projects grid – 2 cards */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .project-card {
+        background: var(--card-bg);
+        border-radius: 40px;
+        padding: 1.8rem 1.5rem 2rem;
+        box-shadow: var(--shadow-dark);
+        transition: 0.25s ease;
+        border: 1px solid #2a3f5a;
+      }
+
+      .project-card:hover {
+        transform: translateY(-8px);
+        border-color: var(--secondary-accent);
+        box-shadow: 0 30px 40px -10px #020a1a;
+      }
+
+      .card-image {
+        width: 100%;
+        height: 190px;
+        background: #132336;
+        border-radius: 28px;
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #2b4b6e;
+      }
+
+      .card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.9;
+        transition: 0.2s;
+      }
+      .card-image img:hover {
+        opacity: 1;
+      }
+
+      .project-card h3 {
+        color: #b7d6ff;
+        font-size: 1.9rem;
+        font-weight: 600;
+        margin-bottom: 0.7rem;
+      }
+
+      .project-card p {
+        color: #bccff0;
+        font-size: 1.05rem;
+      }
+
+      .project-badge {
+        background: #1a3757;
+        border-radius: 50px;
+        padding: 0.3rem 1.2rem;
+        display: inline-block;
+        margin-top: 1.2rem;
+        font-size: 0.9rem;
+        color: #b3d3ff;
+        font-weight: 500;
+        border: 1px solid #3d6190;
+      }
+
+      /* certificate panel */
+      .cert-panel {
+        background: linear-gradient(145deg, #182b41, #112135);
+        border-radius: 50px;
+        padding: 3rem;
+        box-shadow: var(--shadow-dark);
+        border-left: 10px solid var(--secondary-accent);
+        border: 1px solid #2d4b6e;
+      }
+
+      .cert-panel h3 {
+        font-size: 2.2rem;
+        color: #bbdbff;
+        margin-bottom: 1rem;
+      }
+
+      .cert-panel p {
+        font-size: 1.2rem;
+        max-width: 800px;
+        color: #c2d4f0;
+      }
+
+      /* contact with updated email and location */
+      .contact-form {
+        max-width: 650px;
+        margin: 0 auto;
+        background: #17273d;
+        padding: 3rem 3rem;
+        border-radius: 60px;
+        box-shadow: var(--shadow-dark);
+        display: grid;
+        gap: 1.5rem;
+        border: 1px solid #2d4668;
+      }
+
+      .resume-info {
+        background: #14263e;
+        border-radius: 50px;
+        padding: 1.5rem 2rem;
+        border: 1px dashed #4a7bb8;
+        color: #c5dbff;
+        font-size: 1.05rem;
+        display: grid;
+        gap: 0.8rem;
+      }
+      .resume-info strong {
+        color: var(--primary-accent);
+      }
+
+      .contact-note {
+        text-align: center;
+        color: #a0c0f0;
+        font-style: italic;
+        border-top: 1px solid #2d5070;
+        padding-top: 1rem;
+      }
+
+      footer {
+        background: #0a1424;
+        color: #7d9ec0;
+        text-align: center;
+        padding: 2rem;
+        font-size: 1.1rem;
+        margin-top: 3rem;
+        border-top: 1px solid #1e3857;
+      }
+
+      /* responsive */
+      @media (max-width: 950px) {
+        .template-card {
+          padding: 3rem 2rem;
+        }
+      }
+
+      @media (max-width: 850px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          padding: 1rem 1.8rem;
+        }
+        .nav-links {
+          position: absolute;
+          top: 72px;
+          right: 0;
+          background: #122538;
+          flex-direction: column;
+          width: 240px;
+          padding: 2rem;
+          gap: 1.5rem;
+          box-shadow: -5px 15px 25px #030812;
+          display: none;
+          border-radius: 0 0 0 28px;
+          border: 1px solid #2a4a70;
+        }
+        .nav-links.active {
+          display: flex;
+        }
+        .menu-toggle {
+          display: block;
+        }
+        .section-title {
+          font-size: 2.4rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .template-left .greeting {
+          font-size: 1.8rem;
+        }
+        .about-photo img {
+          width: 200px;
+          height: 200px;
+        }
+        .skill-line {
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- navigation -->
+    <nav class="navbar">
+      <div class="logo">Apoorna.</div>
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- first page (name completely removed, only greeting remains) -->
+    <section id="home" class="home-template">
+      <div class="template-card">
+        <div class="template-left">
+          <div class="greeting">👋 Hi Welcome You All</div>
+          <!-- name heading (h1) removed as requested -->
+          <div class="subhead">Electrical & Electronics Engineer</div>
+          <div class="description">
+            Passionate about circuit design, power electronics, and intelligent
+            systems. Building tech for a sustainable future.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- about section with photo (name still appears here) -->
+    <section id="about">
+      <div class="about-grid">
+        <div class="about-photo">
+          <img
+            src="WhatsApp Image 2026-02-24 at 11.40.30 AM.jpeg"
+            alt="Apoorna Rajaguru profile photo"
+          />
+        </div>
+        <div class="about-details">
+          <h2>Apoorna Rajaguru</h2>
+          <span class="edu">B.E. EEE · 2024–2027</span>
+          <p>
+            Government College of Engineering · focused on circuit design, power
+            electronics, and AI-driven solutions.
+          </p>
+          <div class="tagline">✨ building tech for a sustainable future</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- skills with icons (each skill line now includes an icon) -->
+    <section id="skills">
+      <h2 class="section-title">Technical skills</h2>
+      <div class="skills-lines">
+        <div class="skill-line">
+          <span class="skill-icon icon-circuit"></span>Circuit Designing
+        </div>
+        <div class="skill-line">
+          <span class="skill-icon icon-pcb"></span>PCB Design Making
+        </div>
+        <div class="skill-line">
+          <span class="skill-icon icon-machines"></span>Machines I & II
+        </div>
+        <div class="skill-line">
+          <span class="skill-icon icon-power"></span>Power Electronics
+        </div>
+        <div class="skill-line">
+          <span class="skill-icon icon-analysis"></span>Circuit Analysis
+        </div>
+        <div class="skill-line">
+          <span class="skill-icon icon-analog"></span>Analog Electronics
+        </div>
+        <div class="skill-line">
+          <span class="skill-icon icon-digital"></span>Digital Electronics
+        </div>
+      </div>
+    </section>
+
+    <!-- projects & workshop (2 cards) -->
+    <section id="projects">
+      <h2 class="section-title">Projects & workshop</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="card-image">
+            <img src="wheelchair.jpeg" alt="Smart wheelchair project image" />
+          </div>
+          <h3>Smart Wheelchair</h3>
+          <p>
+            Embedded navigation, obstacle detection, and battery‑optimized
+            mobility solution.
+          </p>
+          <span class="project-badge">assistive tech</span>
+        </div>
+        <div class="project-card">
+          <div class="card-image">
+            <img src="ev.jpeg" alt="EV workshop image" />
+          </div>
+          <h3>EV Workshop</h3>
+          <p>
+            Hands‑on training on EV powertrain, battery management, and motor
+            controllers.
+          </p>
+          <span class="project-badge">workshop 2025</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- certificates -->
+    <section id="certificates">
+      <h2 class="section-title">Certificate verification</h2>
+      <div class="cert-panel">
+        <h3>🔐 AI Certificate Verification System</h3>
+        <p>
+          Secure validation of academic & technical certificates using
+          hash-based verification and AI tamper detection. Prototype reduces
+          forgery risk with blockchain‑ready architecture.
+        </p>
+        <div
+          style="
+            margin-top: 2rem;
+            background: #1c3553;
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            display: inline-block;
+            color: #bbd6ff;
+            border: 1px solid #4171a8;
+          "
+        >
+          ✔️ verifiable credentials
+        </div>
+      </div>
+    </section>
+
+    <!-- contact with updated email and location -->
+    <section id="contact">
+      <h2 class="section-title">Contact & resume</h2>
+      <div class="contact-form">
+        <div class="resume-info">
+          <div><strong>Apoorna Rajaguru</strong> · EEE student</div>
+          <div>📧 <strong>Email:</strong> apoorna4379@gmail.com</div>
+
+          <div>🔗 <strong>LinkedIn:</strong> linkedin.com/in/apoorna-eee</div>
+          <div>📍 <strong>Location:</strong> Virudhunagar, India</div>
+        </div>
+        <div class="contact-note">
+          ✦ direct inquiry via email or LinkedIn above ✦
+        </div>
+      </div>
+    </section>
+
+    <footer>© 2026 Apoorna Rajaguru · dark theme · all rights reserved</footer>
+
+    <script>
+      function toggleMenu() {
+        document.getElementById("navLinks").classList.toggle("active");
+      }
+      const navLinks = document.querySelectorAll(".nav-links a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          if (window.innerWidth <= 768) {
+            document.getElementById("navLinks").classList.remove("active");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
